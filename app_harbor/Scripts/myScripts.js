@@ -5,6 +5,10 @@
         
         $("#sliderhide").toggle('slow', function () {
             // Animation complete.
+
         });
+    });
+    $(function () {
+        $("#EnrollmentDate").datepicker();
     });
 });
