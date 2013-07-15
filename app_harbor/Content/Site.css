@@ -319,11 +319,6 @@ div#title {
 .text-box.multi-line {
     height: 6.5em;
 }
-
-.tri-state {
-    width: 6em;
-}
-
 .slider{
 	width:100%;
 	height:380px;
@@ -352,3 +347,7 @@ div#title {
 #sliderhide {
    display:none;
 }
+.tri-state {
+    width: 6em;
+}
+
