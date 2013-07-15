@@ -16,9 +16,34 @@ namespace app_harbor.Controllers
         //
         // GET: /Student/
 
-        public ViewResult Index()
+        public ViewResult Index(string sortOrder, string searchString)
         {
-            return View(db.Students.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+            var students = from s in db.Students
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
+                                       || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Name desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "Date desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
+
+            return View(students.ToList());
         }
 
         //

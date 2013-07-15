@@ -10,18 +10,18 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
-        <th>
-            LastName
-        </th>
-        <th>
-            FirstMidName
-        </th>
-        <th>
-            EnrollmentDate
-        </th>
-        <th></th>
-    </tr>
+   <tr>
+    <th></th>
+    <th>
+        @Html.ActionLink("Last Name", "Index", new { sortOrder=ViewBag.NameSortParm })
+    </th>
+    <th>
+        First Name
+    </th>
+    <th>
+        @Html.ActionLink("Enrollment Date", "Index", new { sortOrder=ViewBag.DateSortParm })
+    </th>
+</tr>
 
 @foreach (var item in Model) {
     <tr>
@@ -43,3 +43,9 @@
 }
 
 </table>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")  
+        <input type="submit" value="Search" /></p>
+}
