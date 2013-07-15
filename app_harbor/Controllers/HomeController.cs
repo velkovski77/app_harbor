@@ -10,7 +10,7 @@ namespace app_harbor.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "My first application on appharbor ";
 
             return View();
         }
